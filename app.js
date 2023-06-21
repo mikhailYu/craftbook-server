@@ -5,7 +5,7 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var cors = require("cors");
-var session = require("cookie-session");
+var session = require("express-session");
 var multer = require("multer");
 
 var router = express.Router();
@@ -42,7 +42,6 @@ var commentRouter = require("./routes/comment");
 var imageRouter = require("./routes/image");
 
 var app = express();
-app.enable("trust proxy");
 app.use(cors(corsOptions)); // Use this after the variable declaration
 
 // view engine setup
