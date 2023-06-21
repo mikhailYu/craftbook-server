@@ -42,6 +42,7 @@ var commentRouter = require("./routes/comment");
 var imageRouter = require("./routes/image");
 
 var app = express();
+app.enable("trust proxy");
 app.use(cors(corsOptions)); // Use this after the variable declaration
 
 // view engine setup
@@ -54,6 +55,8 @@ app.use(
     resave: false,
     saveUninitialized: true,
     cookie: { maxAge: 86400000 },
+    sameSite: "none",
+    secure: true,
   })
 );
 app.use(passport.initialize());
