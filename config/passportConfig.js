@@ -8,10 +8,13 @@ passport.serializeUser((user, done) => {
   done(null, user.id);
 });
 
-passport.deserializeUser((id, done) => {
-  User.findById(id).then((user) => {
+passport.deserializeUser(async (id, done) => {
+  try {
+    const user = await User.findById(id);
     done(null, user);
-  });
+  } catch (err) {
+    done(err);
+  }
 });
 
 passport.use(
@@ -21,8 +24,8 @@ passport.use(
       clientSecret: process.env.CLIENTSECRET,
       callbackURL: "/user/redirect",
     },
-    (issuer, profile, cb, done) => {
-      User.findOne({ googleId: profile.id }).then((currentUser) => {
+    async (issuer, profile, cb, done) => {
+      await User.findOne({ googleId: profile.id }).then((currentUser) => {
         if (currentUser) {
           done(null, currentUser);
         } else {
@@ -57,7 +60,7 @@ passport.use(
       password: "password",
     },
     async (username, password, done) => {
-      new User({
+      await new User({
         username: `Guest ${username}`,
         setUpComplete: true,
         bio: "",
