@@ -53,7 +53,7 @@ app.use(
     secret: "secret",
     resave: false,
     saveUninitialized: true,
-    cookie: { maxAge: 86400000, secure: true, sameSite: "none" },
+    cookie: { maxAge: 86400000, secure: true },
   })
 );
 app.use(passport.initialize());
