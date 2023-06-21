@@ -5,7 +5,7 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var cors = require("cors");
-var session = require("express-session");
+var session = require("cookie-session");
 var multer = require("multer");
 
 var router = express.Router();
