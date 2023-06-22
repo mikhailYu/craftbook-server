@@ -10,15 +10,15 @@ passport.serializeUser((user, done) => {
   done(null, user.id);
 });
 
-passport.deserializeUser(async (_id, done) => {
+passport.deserializeUser(async (id, done) => {
   console.log("user deserialized");
 
-  const user = await User.findById(_id);
+  try {
+    const user = await User.findById(id);
 
-  if (!user) {
-    done("error");
-  } else {
-    done(null, user);
+    done(null, user.id);
+  } catch (err) {
+    done(err);
   }
 });
 
@@ -69,7 +69,7 @@ passport.use(
     },
     async (username, password, done) => {
       console.log("local strategy called");
-      await new User({
+      const user = await new User({
         username: `Guest ${username}`,
         setUpComplete: true,
         bio: "",
@@ -80,12 +80,12 @@ passport.use(
           picId: null,
         },
         theme: 0,
-      })
-        .save()
-        .then((user) => {
-          console.log("local strategy completed " + user.id);
-          return done(null, user);
-        });
+      });
+
+      await save();
+
+      console.log("local strategy completed " + user.id);
+      return done(null, user);
     }
   )
 );
