@@ -5,7 +5,8 @@ require("dotenv").config();
 const User = require("../models/userModel");
 
 passport.serializeUser((user, done) => {
-  console.log("user serialized");
+  console.log("user serialized " + user.id);
+
   return done(null, user.id);
 });
 
@@ -81,7 +82,7 @@ passport.use(
       })
         .save()
         .then((user) => {
-          console.log("local strategy completed");
+          console.log("local strategy completed " + user.id);
           return done(null, user);
         });
     }
