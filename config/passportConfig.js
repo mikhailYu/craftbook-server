@@ -13,13 +13,13 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser(async (_id, done) => {
   console.log("user deserialized");
 
-  await User.findById(_id, (err, user) => {
-    if (err) {
-      done(null, false, { error: err });
-    } else {
-      done(null, user);
-    }
-  });
+  const user = await User.findById(_id);
+
+  if (!user) {
+    done("error");
+  } else {
+    done(null, user);
+  }
 });
 
 passport.use(
