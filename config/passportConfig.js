@@ -69,7 +69,7 @@ passport.use(
     },
     async (username, password, done) => {
       console.log("local strategy called");
-      const user = await new User({
+      await new User({
         username: `Guest ${username}`,
         setUpComplete: true,
         bio: "",
@@ -80,12 +80,12 @@ passport.use(
           picId: null,
         },
         theme: 0,
-      });
-
-      await save();
-
-      console.log("local strategy completed " + user.id);
-      return done(null, user);
+      })
+        .save()
+        .then((user) => {
+          console.log("local strategy completed " + user.id);
+          return done(null, user);
+        });
     }
   )
 );
