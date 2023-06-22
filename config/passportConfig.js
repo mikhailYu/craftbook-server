@@ -5,10 +5,12 @@ require("dotenv").config();
 const User = require("../models/userModel");
 
 passport.serializeUser((user, done) => {
+  console.log("user serialized");
   return done(null, user.id);
 });
 
 passport.deserializeUser(async (id, done) => {
+  console.log("user deserialized");
   try {
     const user = await User.findById(id);
     return done(null, user);
@@ -25,6 +27,7 @@ passport.use(
       callbackURL: "/user/redirect",
     },
     async (issuer, profile, cb, done) => {
+      console.log("google strategy called");
       await User.findOne({ googleId: profile.id }).then((currentUser) => {
         if (currentUser) {
           return done(null, currentUser);
@@ -45,6 +48,7 @@ passport.use(
           })
             .save()
             .then((user) => {
+              console.log("google strategy completed");
               return done(null, user);
             });
         }
@@ -60,6 +64,7 @@ passport.use(
       password: "password",
     },
     async (username, password, done) => {
+      console.log("local strategy called");
       await new User({
         username: `Guest ${username}`,
         setUpComplete: true,
@@ -74,6 +79,7 @@ passport.use(
       })
         .save()
         .then((user) => {
+          console.log("local strategy completed");
           return done(null, user);
         });
     }
