@@ -88,9 +88,6 @@ app.use(function (request, response, next) {
   next();
 });
 
-app.use(passport.initialize());
-app.use(passport.session());
-
 app.use(logger("dev"));
 app.use(express.json({ limit: "50mb" }));
 app.use(
@@ -99,6 +96,8 @@ app.use(
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
+app.use(passport.initialize());
+app.use(passport.session());
 // might have to delete this, passport related
 app.use((request, response, next) => {
   response.setHeader(
