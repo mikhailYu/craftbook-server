@@ -95,9 +95,6 @@ app.use(
 );
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
-
-app.use(passport.initialize());
-app.use(passport.session());
 // might have to delete this, passport related
 app.use((request, response, next) => {
   response.setHeader(
@@ -111,6 +108,8 @@ app.use((request, response, next) => {
   response.setHeader("Access-Control-Allow-Credentials", "true");
   next();
 });
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use("/", indexRouter);
 app.use("/user", userRouter);
