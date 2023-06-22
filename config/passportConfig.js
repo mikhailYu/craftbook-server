@@ -70,7 +70,7 @@ passport.use(
     async (username, password, done) => {
       console.log("local strategy called");
       await new User({
-        username: `Guest test`,
+        username: `Guest ${username}`,
         setUpComplete: true,
         bio: "",
         location: "",
