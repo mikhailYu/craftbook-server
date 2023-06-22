@@ -10,15 +10,9 @@ router.get("/auth", userController.authUser);
 
 //putting this here due to auto format adding unusual brackets
 
-router.post("/authGuest", passport.authenticate("local"), function (err, user) {
-  req.logIn(user, function (err) {
-    res.json(req.user);
-  });
+router.post("/authGuest", passport.authenticate("local"), function (req, res) {
+  res.json(req.user);
 });
-
-// router.post("/authGuest", passport.authenticate("local"), function (req, res) {
-//   res.json(req.user);
-// });
 
 router.get("/redirect", userController.authRedirect);
 

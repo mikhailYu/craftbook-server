@@ -45,7 +45,7 @@ var commentRouter = require("./routes/comment");
 var imageRouter = require("./routes/image");
 
 var app = express();
-app.set("trust proxy", 1);
+app.set("trust proxy", true);
 app.use(cors(corsOptions)); // Use this after the variable declaration
 
 app.use(
