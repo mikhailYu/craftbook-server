@@ -5,7 +5,7 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var cors = require("cors");
-var session = require("express-session");
+var session = require("cookie-session");
 var multer = require("multer");
 
 const helmet = require("helmet");
@@ -70,6 +70,22 @@ app.use(
     },
   })
 );
+
+// cookie session related
+app.use(function (request, response, next) {
+  if (request.session && !request.session.regenerate) {
+    request.session.regenerate = (cb) => {
+      cb();
+    };
+  }
+  if (request.session && !request.session.save) {
+    request.session.save = (cb) => {
+      cb();
+    };
+  }
+  next();
+});
+
 app.use(passport.initialize());
 app.use(passport.session());
 
