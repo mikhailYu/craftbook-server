@@ -27,7 +27,7 @@ passport.use(
     async (issuer, profile, cb, done) => {
       await User.findOne({ googleId: profile.id }).then((currentUser) => {
         if (currentUser) {
-          done(null, currentUser);
+          return done(null, currentUser);
         } else {
           new User({
             googleId: profile.id,
@@ -45,7 +45,7 @@ passport.use(
           })
             .save()
             .then((user) => {
-              done(null, user);
+              return done(null, user);
             });
         }
       });

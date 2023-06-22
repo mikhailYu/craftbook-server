@@ -5,20 +5,18 @@ const configServer = require("../config/configServerDev.js");
 const passport = require("passport");
 const uniqid = require("uniqid");
 
-//gonna have to add more for notifications
-
 exports.authUser = passport.authenticate("google", {
   scope: ["email profile"],
 });
 
-exports.authLogout = asyncHandler(async (req, res, next) => {
+exports.authLogout = async (req, res, next) => {
   req.logout(function (err) {
     if (err) {
       res.status(404).json("error");
     }
     res.status(200).json("success");
   });
-});
+};
 
 exports.authRedirect = passport.authenticate("google", {
   successRedirect: configServer.clientUrl + "/authenticate",

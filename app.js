@@ -8,6 +8,8 @@ var cors = require("cors");
 var session = require("express-session");
 var multer = require("multer");
 
+const helmet = require("helmet");
+
 var router = express.Router();
 var passport = require("passport");
 
@@ -45,6 +47,13 @@ var app = express();
 app.set("trust proxy", 1);
 app.use(cors(corsOptions)); // Use this after the variable declaration
 
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      "script-src": ["'self'", "code.jquery.com", "cdn.jsdelivr.net"],
+    },
+  })
+);
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "jade");
@@ -56,6 +65,7 @@ app.use(
     saveUninitialized: true,
     cookie: {
       maxAge: 86400000,
+      SameSite: "none",
     },
   })
 );
