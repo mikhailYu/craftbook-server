@@ -10,7 +10,8 @@ router.get("/auth", userController.authUser);
 
 //putting this here due to auto format adding unusual brackets
 
-router.post(
+//changed to get
+router.get(
   "/authGuest",
   passport.authenticate("local"),
   function (req, res, next) {
