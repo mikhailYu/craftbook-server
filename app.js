@@ -1,20 +1,6 @@
 require("dotenv").config();
-var createError = require("http-errors");
-var express = require("express");
-var path = require("path");
-var cookieParser = require("cookie-parser");
-var logger = require("morgan");
+
 var cors = require("cors");
-var session = require("cookie-session");
-var multer = require("multer");
-
-const helmet = require("helmet");
-
-var router = express.Router();
-var passport = require("passport");
-
-const passportSetup = require("./config/passportConfig");
-
 const corsOptions = {
   origin: [
     "http://localhost:3000",
@@ -27,6 +13,22 @@ const corsOptions = {
 
   optionSuccessStatus: 200,
 };
+
+var createError = require("http-errors");
+var express = require("express");
+var path = require("path");
+var cookieParser = require("cookie-parser");
+var logger = require("morgan");
+var bodyParser = require("body-parser");
+var session = require("cookie-session");
+var multer = require("multer");
+
+const helmet = require("helmet");
+
+var router = express.Router();
+var passport = require("passport");
+
+const passportSetup = require("./config/passportConfig");
 
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
@@ -65,7 +67,7 @@ app.use(cookieParser("secret"));
 app.use(
   session({
     secret: "secret",
-    resave: true,
+    resave: false,
     saveUninitialized: true,
     cookie: {
       maxAge: 86400000,
@@ -96,6 +98,7 @@ app.use(express.json({ limit: "50mb" }));
 app.use(
   express.urlencoded({ extended: false, limit: "50mb", parameterLimit: 10000 })
 );
+app.use(bodyParser.json({ type: "application/*" }));
 
 // might have to delete this, passport related
 app.use((request, response, next) => {
