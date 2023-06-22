@@ -20,6 +20,7 @@ const corsOptions = {
     "http://localhost:3000",
     "https://mikhailyu.github.io/craftbook-ui",
     "https://mikhailyu.github.io",
+    "https://mikhailyu.github.io/craftbook-reactApp",
     // LIST ALL YOUR LINKS FROM THE FRONTEND
   ],
   credentials: true,
