@@ -24,10 +24,10 @@ exports.authRedirect = passport.authenticate("google", {
 });
 
 exports.getAuth = asyncHandler(async (req, res, next) => {
-  if (req.user) {
+  if (req.session.user) {
     res.status(200).json({
       success: true,
-      user: req.user,
+      user: req.session.user,
     });
   } else {
     res.status(200).json({
