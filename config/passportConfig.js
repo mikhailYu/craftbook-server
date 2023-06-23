@@ -40,7 +40,8 @@ passport.use(
           console.log("google user exists");
           console.log("googleUser: " + currentUser);
 
-          return done(null, currentUser);
+          return done(null, profile);
+          // return done(null, currentUser);
         } else {
           new User({
             googleId: profile.id,
