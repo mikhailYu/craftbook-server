@@ -61,6 +61,22 @@ app.use(
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "jade");
 
+// might have to delete this, passport related
+app.use((request, response, next) => {
+  response.setHeader(
+    "Access-Control-Allow-Headers",
+    "Access-Control-Allow-Origin: https://mikhailyu.github.io/",
+    "Origin, X-Requested-With, Content, Accept, Content-Type, Authorization",
+    "Access-Control-Allow-Private-Network: true"
+  );
+  response.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, PUT, DELETE, PATCH, OPTIONS"
+  );
+  response.setHeader("Access-Control-Allow-Credentials", "true");
+  next();
+});
+
 app.use(express.static(path.join(__dirname, "public")));
 app.use(cookieParser("secret"));
 
@@ -72,7 +88,7 @@ app.use(
     cookie: {
       maxAge: new Date(Date.now() + 3600000),
       SameSite: "None",
-      secure: false,
+      secure: true,
       httpOnly: true,
       path: "/",
     },
@@ -101,21 +117,6 @@ app.use(
 );
 app.use(bodyParser.json({ type: "application/*" }));
 
-// might have to delete this, passport related
-app.use((request, response, next) => {
-  response.setHeader(
-    "Access-Control-Allow-Headers",
-    "Access-Control-Allow-Origin: https://mikhailyu.github.io/",
-    "Origin, X-Requested-With, Content, Accept, Content-Type, Authorization",
-    "Access-Control-Allow-Private-Network: true"
-  );
-  response.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET, POST, PUT, DELETE, PATCH, OPTIONS"
-  );
-  response.setHeader("Access-Control-Allow-Credentials", "true");
-  next();
-});
 app.use(passport.initialize());
 app.use(passport.session());
 
