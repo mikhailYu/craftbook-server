@@ -32,7 +32,6 @@ passport.use(
       proxy: true,
       passport: true,
     },
-
     async (req, issuer, profile, cd, done) => {
       console.log("google strategy called");
 

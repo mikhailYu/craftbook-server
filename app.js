@@ -68,9 +68,9 @@ app.use(
   session({
     secret: "secret",
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     cookie: {
-      maxAge: 86400000,
+      maxAge: new Date(Date.now() + 3600000),
       SameSite: "None",
       secure: false,
       httpOnly: true,
@@ -97,7 +97,7 @@ app.use(function (request, response, next) {
 app.use(logger("dev"));
 app.use(express.json({ limit: "50mb" }));
 app.use(
-  express.urlencoded({ extended: false, limit: "50mb", parameterLimit: 10000 })
+  express.urlencoded({ extended: true, limit: "50mb", parameterLimit: 10000 })
 );
 app.use(bodyParser.json({ type: "application/*" }));
 
