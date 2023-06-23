@@ -106,7 +106,8 @@ app.use((request, response, next) => {
   response.setHeader(
     "Access-Control-Allow-Headers",
     "Access-Control-Allow-Origin: https://mikhailyu.github.io/",
-    "Origin, X-Requested-With, Content, Accept, Content-Type, Authorization"
+    "Origin, X-Requested-With, Content, Accept, Content-Type, Authorization",
+    "Access-Control-Allow-Private-Network: true"
   );
   response.setHeader(
     "Access-Control-Allow-Methods",
