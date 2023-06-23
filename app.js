@@ -73,7 +73,7 @@ app.use(
       maxAge: 86400000,
       SameSite: "None",
       secure: false,
-      httpOnly: false,
+      httpOnly: true,
     },
   })
 );
