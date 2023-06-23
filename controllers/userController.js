@@ -6,7 +6,7 @@ const passport = require("passport");
 const uniqid = require("uniqid");
 
 exports.authUser = passport.authenticate("google", {
-  scope: ["openid", "User.Read", "email", "profile"],
+  scope: ["openid", "email", "profile"],
 });
 
 exports.authLogout = async (req, res, next) => {
