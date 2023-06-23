@@ -35,35 +35,35 @@ passport.use(
 
     async (req, issuer, profile, cd, done) => {
       console.log("google strategy called");
-      await User.findOne({ googleId: profile.id }).then((currentUser) => {
-        console.log("googleUser id: " + profile.id);
-        if (currentUser) {
-          console.log("google user exists");
-          console.log("googleUser: " + currentUser);
 
-          done(null, currentUser);
-        } else {
-          new User({
-            googleId: profile.id,
-            email: profile.emails[0].value,
-            username: profile.displayName,
-            bio: "",
-            location: "",
-            setUpComplete: false,
-            profilePic: {
-              defaultSettings: { isDefault: true, defaultIndex: 0 },
-              picId: null,
-            },
-            guest: false,
-            theme: 0,
-          })
-            .save()
-            .then((user) => {
-              console.log("google strategy completed");
-              done(null, user);
-            });
-        }
-      });
+      const googleUser = await User.findOne({ googleId: profile.id });
+
+      if (googleUser) {
+        console.log("google user exists");
+        console.log("googleUser: " + googleUser);
+
+        return done(null, googleUser);
+      } else {
+        new User({
+          googleId: profile.id,
+          email: profile.emails[0].value,
+          username: profile.displayName,
+          bio: "",
+          location: "",
+          setUpComplete: false,
+          profilePic: {
+            defaultSettings: { isDefault: true, defaultIndex: 0 },
+            picId: null,
+          },
+          guest: false,
+          theme: 0,
+        })
+          .save()
+          .then((user) => {
+            console.log("google strategy completed");
+            return done(null, user);
+          });
+      }
     }
   )
 );
