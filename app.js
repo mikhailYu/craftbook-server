@@ -87,10 +87,11 @@ app.use(
     saveUninitialized: false,
     cookie: {
       maxAge: new Date(Date.now() + 3600000),
-      SameSite: "None",
+      sameSite: "none",
       secure: true,
       httpOnly: true,
       path: "/",
+      domain: "craftbook-server.onrender.com",
     },
   })
 );
