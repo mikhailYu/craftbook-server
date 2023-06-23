@@ -4,6 +4,7 @@ var cors = require("cors");
 const corsOptions = {
   origin: [
     "http://localhost:3000",
+    "https://mikhailyu.github.io/craftbook-ui",
     "https://mikhailyu.github.io",
     "https://mikhailyu.github.io/craftbook-reactApp",
     // LIST ALL YOUR LINKS FROM THE FRONTEND
