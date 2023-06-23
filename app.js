@@ -85,6 +85,14 @@ app.use(
     secret: "secret",
     resave: false,
     saveUninitialized: false,
+
+    maxAge: new Date(Date.now() + 3600000),
+    sameSite: "none",
+    secure: true,
+    httpOnly: true,
+    path: "/",
+    domain: "craftbook-server.onrender.com",
+
     cookie: {
       maxAge: new Date(Date.now() + 3600000),
       sameSite: "none",
