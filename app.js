@@ -4,7 +4,6 @@ var cors = require("cors");
 const corsOptions = {
   origin: [
     "http://localhost:3000",
-    "https://mikhailyu.github.io/craftbook-ui",
     "https://mikhailyu.github.io",
     "https://mikhailyu.github.io/craftbook-reactApp",
     // LIST ALL YOUR LINKS FROM THE FRONTEND
@@ -87,8 +86,8 @@ app.use(
     saveUninitialized: false,
 
     maxAge: new Date(Date.now() + 3600000),
-    sameSite: "none",
-    secure: true,
+    // sameSite: "none",
+    secure: false,
     httpOnly: true,
     path: "/",
     domain: "craftbook-server.onrender.com",
@@ -96,7 +95,7 @@ app.use(
     cookie: {
       maxAge: new Date(Date.now() + 3600000),
       sameSite: "none",
-      secure: true,
+      secure: false,
       httpOnly: true,
       path: "/",
       domain: "craftbook-server.onrender.com",
