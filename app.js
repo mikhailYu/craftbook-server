@@ -86,7 +86,7 @@ app.use(
     saveUninitialized: false,
 
     maxAge: new Date(Date.now() + 3600000),
-    // sameSite: "none",
+    sameSite: "none",
     secure: false,
     httpOnly: true,
     path: "/",
