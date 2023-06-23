@@ -28,6 +28,7 @@ passport.use(
       clientID: process.env.CLIENTID,
       clientSecret: process.env.CLIENTSECRET,
       callbackURL: "/user/redirect",
+      passReqToCallback: true,
     },
 
     async (issuer, profile, cd, done) => {
@@ -35,7 +36,7 @@ passport.use(
       await User.findOne({ googleId: profile.id }).then((currentUser) => {
         if (currentUser) {
           console.log("google user exists");
-          return done(null, currentUser);
+          done(null, currentUser);
         } else {
           new User({
             googleId: profile.id,
@@ -54,7 +55,7 @@ passport.use(
             .save()
             .then((user) => {
               console.log("google strategy completed");
-              return done(null, user);
+              done(null, user);
             });
         }
       });
