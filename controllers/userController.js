@@ -5,10 +5,6 @@ const configServer = require("../config/configServerDev.js");
 const passport = require("passport");
 const uniqid = require("uniqid");
 
-exports.authUser = passport.authenticate("google", {
-  scope: ["openid", "email", "profile"],
-});
-
 exports.authLogout = async (req, res, next) => {
   req.logout(function (err) {
     if (err) {
@@ -17,6 +13,10 @@ exports.authLogout = async (req, res, next) => {
     res.status(200).json("success");
   });
 };
+
+// exports.authUser = passport.authenticate("google", {
+//   scope: ["openid", "email", "profile"],
+// });
 
 exports.authRedirect = passport.authenticate("google", {
   successRedirect: configServer.clientUrl + "/authenticate",

@@ -6,9 +6,14 @@ const User = require("../models/userModel");
 const asyncHandler = require("express-async-handler");
 const passport = require("passport");
 
-router.get("/auth", userController.authUser);
-
 //putting this here due to auto format adding unusual brackets
+
+router.get(
+  "/auth",
+  passport.authenticate("google", {
+    scope: ["openid", "email", "profile"],
+  })
+);
 
 router.post(
   "/authGuest",

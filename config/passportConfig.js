@@ -67,31 +67,31 @@ passport.use(
   )
 );
 
-// passport.use(
-//   new LocalStrategy(
-//     {
-//       username: "username",
-//       password: "password",
-//     },
-//     async (username, password, done) => {
-//       console.log("local strategy called");
-//       await new User({
-//         username: `Guest ${username}`,
-//         setUpComplete: true,
-//         bio: "",
-//         location: "",
-//         guest: true,
-//         profilePic: {
-//           defaultSettings: { isDefault: true, defaultIndex: 0 },
-//           picId: null,
-//         },
-//         theme: 0,
-//       })
-//         .save()
-//         .then((user) => {
-//           console.log("local strategy completed " + user.id);
-//           return done(null, user);
-//         });
-//     }
-//   )
-// );
+passport.use(
+  new LocalStrategy(
+    {
+      username: "username",
+      password: "password",
+    },
+    async (username, password, done) => {
+      console.log("local strategy called");
+      await new User({
+        username: `Guest ${username}`,
+        setUpComplete: true,
+        bio: "",
+        location: "",
+        guest: true,
+        profilePic: {
+          defaultSettings: { isDefault: true, defaultIndex: 0 },
+          picId: null,
+        },
+        theme: 0,
+      })
+        .save()
+        .then((user) => {
+          console.log("local strategy completed " + user.id);
+          return done(null, user);
+        });
+    }
+  )
+);
