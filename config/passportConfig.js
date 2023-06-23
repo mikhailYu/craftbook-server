@@ -27,7 +27,7 @@ passport.use(
     {
       clientID: process.env.CLIENTID,
       clientSecret: process.env.CLIENTSECRET,
-      callbackURL: "/user/redirect",
+      callbackURL: `/user/redirect`,
       passReqToCallback: true,
       proxy: true,
     },
