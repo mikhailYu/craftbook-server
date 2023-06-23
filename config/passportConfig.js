@@ -5,6 +5,7 @@ require("dotenv").config();
 const User = require("../models/userModel");
 
 passport.serializeUser((user, done) => {
+  console.log("user serialized " + user.id);
   done(null, user.id);
 });
 
@@ -32,6 +33,9 @@ passport.use(
       const googleUser = await User.findOne({ googleId: profile.id });
       console.log(googleUser);
       if (googleUser) {
+        console.log("google user exists");
+        console.log("googleUser: " + googleUser);
+
         return done(null, googleUser);
       } else {
         new User({
