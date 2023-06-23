@@ -112,19 +112,19 @@ app.use(function (req, res, next) {
   next(createError(404));
 });
 // cookie session related
-app.use(function (request, response, next) {
-  if (request.session && !request.session.regenerate) {
-    request.session.regenerate = (cb) => {
-      cb();
-    };
-  }
-  if (request.session && !request.session.save) {
-    request.session.save = (cb) => {
-      cb();
-    };
-  }
-  next();
-});
+// app.use(function (request, response, next) {
+//   if (request.session && !request.session.regenerate) {
+//     request.session.regenerate = (cb) => {
+//       cb();
+//     };
+//   }
+//   if (request.session && !request.session.save) {
+//     request.session.save = (cb) => {
+//       cb();
+//     };
+//   }
+//   next();
+// });
 // error handler
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development
