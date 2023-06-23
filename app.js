@@ -71,10 +71,9 @@ app.use(
     saveUninitialized: true,
     cookie: {
       maxAge: 86400000,
-      SameSite: "None",
+      SameSite: "lax",
       secure: false,
       httpOnly: true,
-      domain: "craftbook-server.onrender.com",
     },
   })
 );
