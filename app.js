@@ -105,6 +105,7 @@ app.use(bodyParser.json({ type: "application/*" }));
 app.use((request, response, next) => {
   response.setHeader(
     "Access-Control-Allow-Headers",
+    "Access-Control-Allow-Origin: https://mikhailyu.github.io/",
     "Origin, X-Requested-With, Content, Accept, Content-Type, Authorization"
   );
   response.setHeader(
