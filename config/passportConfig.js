@@ -40,7 +40,7 @@ passport.use(
           console.log("google user exists");
           console.log("googleUser: " + currentUser);
 
-          done(null, currentUser);
+          return done(null, currentUser);
         } else {
           new User({
             googleId: profile.id,
@@ -59,7 +59,7 @@ passport.use(
             .save()
             .then((user) => {
               console.log("google strategy completed");
-              done(null, user);
+              return done(null, user);
             });
         }
       });
