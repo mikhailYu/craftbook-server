@@ -10,7 +10,6 @@ exports.authUser = passport.authenticate("google", {
 });
 
 exports.authLogout = async (req, res, next) => {
-  console.log(req.user);
   req.logout(function (err) {
     if (err) {
       res.status(404).json("error");
@@ -25,7 +24,6 @@ exports.authRedirect = passport.authenticate("google", {
 });
 
 exports.getAuth = asyncHandler(async (req, res, next) => {
-  console.log(req.user);
   if (req.user) {
     res.status(200).json({
       success: true,

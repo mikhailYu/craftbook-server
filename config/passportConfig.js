@@ -5,14 +5,10 @@ require("dotenv").config();
 const User = require("../models/userModel");
 
 passport.serializeUser((user, done) => {
-  console.log("user serialized " + user.id);
-
   done(null, user.id);
 });
 
 passport.deserializeUser(async (id, done) => {
-  console.log("user deserialized");
-
   try {
     const user = await User.findById(id);
 
@@ -33,14 +29,9 @@ passport.use(
       passport: true,
     },
     async (req, issuer, profile, cd, done) => {
-      console.log("google strategy called");
-
       const googleUser = await User.findOne({ googleId: profile.id });
 
       if (googleUser) {
-        console.log("google user exists");
-        console.log("googleUser: " + googleUser);
-
         return done(null, googleUser);
       } else {
         new User({
@@ -59,7 +50,6 @@ passport.use(
         })
           .save()
           .then((user) => {
-            console.log("google strategy completed");
             return done(null, user);
           });
       }
@@ -74,7 +64,6 @@ passport.use(
       password: "password",
     },
     async (username, password, done) => {
-      console.log("local strategy called");
       await new User({
         username: `Guest ${username}`,
         setUpComplete: true,
@@ -89,7 +78,6 @@ passport.use(
       })
         .save()
         .then((user) => {
-          console.log("local strategy completed " + user.id);
           return done(null, user);
         });
     }
