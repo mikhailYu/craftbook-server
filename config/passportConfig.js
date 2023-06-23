@@ -34,10 +34,11 @@ passport.use(
     async (issuer, profile, cd, done) => {
       console.log("google strategy called");
       await User.findOne({ googleId: profile.id }).then((currentUser) => {
+        console.log("googleUser id: " + profile.id);
         if (currentUser) {
           console.log("google user exists");
-          console.log(currentUser);
-          console.log(profile.id);
+          console.log("googleUser: " + currentUser);
+
           done(null, currentUser);
         } else {
           new User({
