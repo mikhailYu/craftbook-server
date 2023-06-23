@@ -32,7 +32,7 @@ passport.use(
       proxy: true,
     },
 
-    async (issuer, profile, cd, done) => {
+    async (req, issuer, profile, cd, done) => {
       console.log("google strategy called");
       await User.findOne({ googleId: profile.id }).then((currentUser) => {
         console.log("googleUser id: " + profile.id);
