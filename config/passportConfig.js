@@ -29,6 +29,7 @@ passport.use(
       clientSecret: process.env.CLIENTSECRET,
       callbackURL: "/user/redirect",
       passReqToCallback: true,
+      proxy: true,
     },
 
     async (issuer, profile, cd, done) => {
