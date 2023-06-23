@@ -29,11 +29,12 @@ passport.use(
       clientSecret: process.env.CLIENTSECRET,
       callbackURL: "/user/redirect",
     },
-    // removed cb, between profile and done
-    async (issuer, profile, done) => {
+
+    async (issuer, profile, cd, done) => {
       console.log("google strategy called");
       await User.findOne({ googleId: profile.id }).then((currentUser) => {
         if (currentUser) {
+          console.log("google user exists");
           return done(null, currentUser);
         } else {
           new User({
