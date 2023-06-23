@@ -30,6 +30,7 @@ passport.use(
       callbackURL: `/user/redirect`,
       passReqToCallback: true,
       proxy: true,
+      passport: true,
     },
 
     async (req, issuer, profile, cd, done) => {
