@@ -91,7 +91,7 @@ app.use(
     secure: true,
     httpOnly: true,
     path: "/",
-    domain: "craftbook-server.onrender.com",
+    domain: ".craftbook-server.onrender.com",
 
     cookie: {
       maxAge: new Date(Date.now() + 3600000),
@@ -99,7 +99,7 @@ app.use(
       secure: true,
       httpOnly: true,
       path: "/",
-      domain: "craftbook-server.onrender.com",
+      domain: ".craftbook-server.onrender.com",
     },
   })
 );
