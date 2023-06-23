@@ -74,6 +74,7 @@ app.use(
       SameSite: "None",
       secure: false,
       httpOnly: true,
+      domain: "craftbook-server.onrender.com",
     },
   })
 );
