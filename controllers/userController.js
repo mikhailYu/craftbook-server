@@ -20,7 +20,7 @@ exports.authLogout = async (req, res, next) => {
 
 exports.authRedirect = passport.authenticate("google", {
   successRedirect: configServer.clientUrl + "/authenticate",
-  failureRedirect: configServer.clientUrl + "/authenticate",
+  failureRedirect: "/login/failed",
 });
 
 exports.getAuth = asyncHandler(async (req, res, next) => {

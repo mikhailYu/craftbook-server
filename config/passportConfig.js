@@ -29,8 +29,9 @@ passport.use(
       passport: true,
     },
     async (req, issuer, profile, cd, done) => {
+      console.log("google strat fired");
       const googleUser = await User.findOne({ googleId: profile.id });
-
+      console.log(googleUser);
       if (googleUser) {
         return done(null, googleUser);
       } else {
