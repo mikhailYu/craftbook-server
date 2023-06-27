@@ -86,6 +86,9 @@ app.use(
     resave: false,
     saveUninitialized: false,
 
+    name: "__session",
+    keys: ["key1"],
+
     maxAge: new Date(Date.now() + 3600000),
     sameSite: "none",
     secure: true,
