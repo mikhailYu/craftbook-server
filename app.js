@@ -88,7 +88,7 @@ app.use(
 
     maxAge: new Date(Date.now() + 3600000),
     sameSite: "none",
-    secure: true,
+    secure: false,
     httpOnly: true,
     path: "/",
     domain: ["craftbook-server.onrender.com"],
