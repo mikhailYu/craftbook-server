@@ -47,7 +47,7 @@ var commentRouter = require("./routes/comment");
 var imageRouter = require("./routes/image");
 
 var app = express();
-app.enable("trust proxy", 1);
+app.enable("trust proxy");
 app.use(cors(corsOptions)); // Use this after the variable declaration
 
 app.use(
@@ -88,7 +88,7 @@ app.use(
 
     maxAge: new Date(Date.now() + 3600000),
     sameSite: "none",
-    secure: false,
+    secure: true,
     httpOnly: true,
     path: "/",
     domain: ["craftbook-server.onrender.com"],
